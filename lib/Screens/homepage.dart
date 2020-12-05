@@ -10,10 +10,11 @@ class HomePage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(children: [
-          Row(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             CircleAvatar(
               backgroundImage: AssetImage("images/index.jpeg"),
-            )
+            ),
+            IconButton(icon: Icon(Icons.more_horiz), onPressed: null)
           ]),
           SizedBox(
             height: 20,
@@ -27,10 +28,18 @@ class HomePage extends StatelessWidget {
             children: [
               Text(
                 "Popular",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
               ),
-              FlatButton(onPressed: () => print("hi"), child: Text("Show all"))
+              FlatButton(
+                  onPressed: () => print("hi"),
+                  child: Text(
+                    "Show all",
+                    style: TextStyle(fontSize: 16, color: Colors.orangeAccent),
+                  ))
             ],
+          ),
+          SizedBox(
+            height: 20,
           ),
           Expanded(child: PopularPost())
         ]),
@@ -50,7 +59,8 @@ class _FeaturePostState extends State<FeaturePost> {
     return Column(
       children: [
         Container(
-          height: 150,
+          margin: EdgeInsets.only(bottom: 15),
+          height: 170,
           decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(30),
@@ -62,20 +72,32 @@ class _FeaturePostState extends State<FeaturePost> {
               )),
         ),
         ListTile(
+          onTap: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => DetailPage())),
+          contentPadding: EdgeInsets.zero,
           title: Text(
-            "How to run the most effective meeting",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            "How to run a More Effective Meeting",
+            style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
           ),
-          subtitle: Row(
-            children: [
-              Icon(Feather.clock),
-              Text("  50 mins ago"),
-              SizedBox(
-                width: 20,
-              ),
-              Icon(Feather.message_circle),
-              Text("  60 Comments"),
-            ],
+          subtitle: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              children: [
+                Icon(
+                  Feather.clock,
+                  size: 15,
+                ),
+                Text("  50 mins ago"),
+                SizedBox(
+                  width: 20,
+                ),
+                Icon(
+                  Feather.message_circle,
+                  size: 15,
+                ),
+                Text("  60 Comments"),
+              ],
+            ),
           ),
         )
       ],
@@ -93,59 +115,74 @@ class _PopularPostState extends State<PopularPost> {
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: 3,
-        itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: ListTile(
-                onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => DetailPage())),
-                leading: Container(
+        itemBuilder: (context, index) => Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                      image:
-                          DecorationImage(image: AssetImage("images/pic1.jpg")),
+                      image: DecorationImage(
+                          image: AssetImage("images/pic2.jpg"),
+                          fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(8)),
                 ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                      decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Text(
-                        "Design",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: 15,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                        decoration: BoxDecoration(
+                            color: Colors.purple,
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Text(
+                          "Design",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Text(
-                      "Top 10 techniques to get rid of clutter in designs",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    )
-                  ],
+                      FlatButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => DetailPage())),
+                        child: Text(
+                          "Top 10 techniques to get rid of clutter in designs",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Feather.clock,
+                            size: 10,
+                          ),
+                          Text("  50 mins ago"),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Icon(
+                            Feather.message_circle,
+                            size: 10,
+                          ),
+                          Text("  60 Comments"),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 17,
+                      )
+                    ],
+                  ),
                 ),
-                subtitle: Row(
-                  children: [
-                    Icon(
-                      Feather.clock,
-                      size: 10,
-                    ),
-                    Text("  50 mins ago"),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Feather.message_circle,
-                      size: 10,
-                    ),
-                    Text("  60 Comments"),
-                  ],
-                ),
-              ),
+              ],
             ));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:Blog_app/Screens/Register.dart';
-import 'package:Blog_app/Screens/signup.dart';
+import 'package:Blog_app/Screens/signin.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {

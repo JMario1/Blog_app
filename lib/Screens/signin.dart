@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatefulWidget {
+class SignIn extends StatefulWidget {
   final toogleView;
-  Register({this.toogleView});
+  SignIn({this.toogleView});
   @override
-  _RegisterState createState() => _RegisterState();
+  _SignInState createState() => _SignInState();
 }
 
-class _RegisterState extends State<Register> {
+class _SignInState extends State<SignIn> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -27,40 +27,33 @@ class _RegisterState extends State<Register> {
                     children: <Widget>[
                       SizedBox(height: 20.0),
                       Text(
-                        "Register an account",
-                        style: TextStyle(fontSize: 20),
+                        "Welcome",
+                        style: TextStyle(fontSize: 30),
                       ),
                       SizedBox(
                         height: 30,
                       ),
-                      TextFormField(
-                          validator: (value) =>
-                              value.isEmpty ? 'Enter your Name' : null,
-                          decoration: formDecoration.copyWith(
-                              hintText: 'Enter First Name')),
-                      SizedBox(height: 20.0),
-                      TextFormField(
-                          validator: (value) =>
-                              value.isEmpty ? 'Enter your Name' : null,
-                          decoration: formDecoration.copyWith(
-                              hintText: 'Enter Last Name')),
+                      Text(
+                        "Sign In",
+                        style: TextStyle(fontSize: 20),
+                      ),
                       SizedBox(height: 20.0),
                       TextFormField(
                           validator: (value) =>
                               value.isEmpty ? 'Enter a valid email' : null,
-                          decoration: formDecoration.copyWith(
-                              hintText: 'Enter email',
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.visibility_off),
-                                onPressed: () => null,
-                              ))),
+                          decoration:
+                              formDecoration.copyWith(hintText: 'Enter email')),
                       SizedBox(height: 20.0),
                       TextFormField(
                           validator: (value) => value.length < 6
                               ? 'password can\'t be less than 6 char'
                               : null,
                           decoration: formDecoration.copyWith(
-                              hintText: 'Enter password')),
+                              hintText: 'Enter password',
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.visibility_off),
+                                onPressed: () => null,
+                              ))),
                       SizedBox(height: 20.0),
                       RaisedButton(
                           shape: OutlineInputBorder(
@@ -68,7 +61,7 @@ class _RegisterState extends State<Register> {
                                   color: Colors.blueAccent, width: 5.0),
                               borderRadius: BorderRadius.circular(16)),
                           color: Colors.blueAccent,
-                          child: Text('Register',
+                          child: Text('Sign In',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 20)),
                           onPressed: () async {
@@ -87,11 +80,11 @@ class _RegisterState extends State<Register> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Already have an account"),
+                          Text("Don't have an account yet?"),
                           FlatButton(
                               onPressed: () => widget.toogleView(),
                               child: Text(
-                                "Sign In",
+                                "Register",
                                 style:
                                     TextStyle(color: Colors.blue, fontSize: 20),
                               ))
