@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    bool isUser = false;
+    bool isUser = true;
     return Listener(
       behavior: HitTestBehavior.opaque,
       onPointerDown: (_) {
